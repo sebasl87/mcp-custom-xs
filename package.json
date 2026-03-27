@@ -1,0 +1,14 @@
+{
+  "name": "@loggi87/mcp-custom-xs",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "description": "MCP con reglas: 80 líneas, atomic, TypeScript strict",
+  "keywords": [
+    "mcp",
+    "rules",
+    "atomic-design"
+  ]
+}
