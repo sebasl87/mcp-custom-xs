@@ -112,7 +112,7 @@ function getFormattedRules() {
 }
 
 // Servidor MCP
-const server = new McpServer({ name: "mcp-custom-xs", version: "1.0.3" });
+const server = new McpServer({ name: "mcp-custom-xs", version: "1.0.5" });
 
 server.tool(
     "validate_file",
