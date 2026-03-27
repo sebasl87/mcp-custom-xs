@@ -20,9 +20,9 @@ Un paquete de reglas y estándares que puedes usar en tus proyectos para mantene
 
 ### 1. Instalar el paquete
 
-\`\`\`bash
+```bash
 npm install @loggi87/mcp-custom-xs
-\`\`\`
+```
 
 ### 2. Opción A: Usar en Claude.ai (recomendado para desarrollo)
 
@@ -30,7 +30,7 @@ Agrega las reglas a tus **Custom Instructions** en Claude.ai:
 
 **Settings → Custom Instructions → Instructions**
 
-\`\`\`
+````
 # MCP Code Rules (@loggi87/mcp-custom-xs)
 
 ## Reglas obligatorias para TODOS los features:
@@ -40,22 +40,22 @@ Agrega las reglas a tus **Custom Instructions** en Claude.ai:
     - Excepciones documentadas requieren comentario // LONG_FILE
 
 2. **Atomic Design para componentes**
-   \`\`\`
+   ```
    src/components/
    ├── atoms/           (botones, inputs, etiquetas)
    ├── molecules/       (formularios simples, tarjetas)
    └── organisms/       (modales, headers complejos)
-   \`\`\`
+   ```
 
 3. **Feature-based structure**
-   \`\`\`
+   ```
    src/features/{featureName}/
    ├── components/      (atoms, molecules, organisms)
    ├── hooks/
    ├── services/
    ├── types/
    └── index.ts
-   \`\`\`
+   ```
 
 4. **TypeScript Strict Mode**
     - \`tsconfig.json\`: \`"strict": true\`
@@ -63,9 +63,9 @@ Agrega las reglas a tus **Custom Instructions** en Claude.ai:
     - Tipear siempre argumentos y retornos
 
 5. **Validar con tsc ANTES de terminar**
-   \`\`\`bash
+   ```bash
    tsc --noEmit
-   \`\`\`
+   ```
 
 ## Cuando generes código:
 1. Crea los archivos respetando estas reglas
@@ -76,13 +76,13 @@ Agrega las reglas a tus **Custom Instructions** en Claude.ai:
 
 ## Ejemplo de request:
 "Crea el feature de AuthModal usando @loggi87/mcp-custom-xs"
-\`\`\`
+````
 
 **Listo.** Desde ese momento, cada código que te genere seguirá estas reglas automáticamente.
 
 ### 3. Opción B: Usar en tu proyecto (para validación programática)
 
-\`\`\`javascript
+```javascript
 // En tu proyecto
 const rules = require('@loggi87/mcp-custom-xs');
 
@@ -96,13 +96,13 @@ console.log(validation);
 //   file: './src/components/Button.tsx',
 //   lineCount: 31
 // }
-\`\`\`
+```
 
 ---
 
 ## 📂 Estructura recomendada
 
-\`\`\`
+```
 proyecto/
 ├── src/
 │   ├── components/
@@ -129,7 +129,7 @@ proyecto/
 ├── tsconfig.json
 ├── .eslintrc.json
 └── package.json
-\`\`\`
+```
 
 ---
 
@@ -137,7 +137,7 @@ proyecto/
 
 ### tsconfig.json
 
-\`\`\`json
+```json
 {
   "compilerOptions": {
     "strict": true,
@@ -151,11 +151,11 @@ proyecto/
     "lib": ["ES2020", "DOM", "DOM.Iterable"]
   }
 }
-\`\`\`
+```
 
 ### .eslintrc.json
 
-\`\`\`json
+```json
 {
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
@@ -165,7 +165,7 @@ proyecto/
     "no-unused-vars": "warn"
   }
 }
-\`\`\`
+```
 
 ---
 
@@ -174,7 +174,7 @@ proyecto/
 ### ✅ Buen componente (respeta las reglas)
 
 **src/components/atoms/Button.tsx**
-\`\`\`typescript
+```typescript
 import React from 'react';
 
 interface ButtonProps {
@@ -203,7 +203,7 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
-\`\`\`
+```
 
 **Cumple:**
 - ✅ 31 líneas (< 80)
@@ -213,12 +213,12 @@ export const Button: React.FC<ButtonProps> = ({
 
 ### ❌ Mal componente (no respeta reglas)
 
-\`\`\`typescript
+```typescript
 // ❌ 120 líneas (> 80)
 // ❌ Lógica compleja + UI mezcladas
 // ❌ No está en estructura atómica
 // ❌ any types
-\`\`\`
+```
 
 ---
 
@@ -234,7 +234,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 ### Cambios comunes que podrías hacer:
 
-\`\`\`javascript
+```javascript
 // En index.js, puedes agregar:
 
 // - Cambiar límite de líneas
@@ -247,7 +247,7 @@ no_console_logs: true,
 exceptions: {
 "src/utils/constants.ts": { max_lines: 200 }
 }
-\`\`\`
+```
 
 ---
 
@@ -255,9 +255,9 @@ exceptions: {
 
 ### Paso 1: Instalar
 
-\`\`\`bash
+```bash
 npm install @loggi87/mcp-custom-xs
-\`\`\`
+```
 
 ### Paso 2: Agregar a Claude Custom Instructions
 
@@ -265,14 +265,14 @@ Copia el contenido arriba y pégalo en Claude.ai Settings.
 
 ### Paso 3: Pedir features
 
-\`\`\`
+```
 "Crea el feature de LoginForm con:
 - Validación de email
 - Password con toggle visibility
 - Remember me checkbox
 
 Usa @loggi87/mcp-custom-xs"
-\`\`\`
+```
 
 Claude automáticamente:
 - ✅ Divide en atoms/molecules si es necesario
@@ -289,7 +289,7 @@ Claude automáticamente:
 
 Objeto con todas las reglas definidas:
 
-\`\`\`javascript
+```javascript
 const { rules } = require('@loggi87/mcp-custom-xs');
 
 console.log(rules);
@@ -300,13 +300,13 @@ console.log(rules);
 //   typescript_strict: true,
 //   run_tsc_before_finish: true
 // }
-\`\`\`
+```
 
 ### \`validateFile(filePath)\`
 
 Valida un archivo contra las reglas:
 
-\`\`\`javascript
+```javascript
 const { validateFile } = require('@loggi87/mcp-custom-xs');
 
 const result = validateFile('./src/components/atoms/Button.tsx');
@@ -318,7 +318,7 @@ console.log(result);
 //   file: './src/components/atoms/Button.tsx',
 //   lineCount: 31
 // }
-\`\`\`
+```
 
 ---
 
@@ -326,9 +326,9 @@ console.log(result);
 
 ### "Cannot find module '@loggi87/mcp-custom-xs'"
 
-\`\`\`bash
+```bash
 npm install @loggi87/mcp-custom-xs
-\`\`\`
+```
 
 ### "TypeScript errors después de instalar"
 
