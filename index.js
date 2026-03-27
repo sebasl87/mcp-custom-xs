@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // index.js - MCP Server (@loggi87/mcp-custom-xs)
 const { McpServer } = require("@modelcontextprotocol/sdk/server/mcp.js");
 const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
